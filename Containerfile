@@ -1,7 +1,7 @@
 #Build from base, simpley because it's the smallest image
 ARG SOURCE_IMAGE="${SOURCE_IMAGE:-base}"
 ARG BASE_IMAGE="quay.io/fedora-ostree-desktops/${SOURCE_IMAGE}"
-ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-37}"
+ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-38}"
 
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION} AS builder
 RUN ln -s /usr/bin/rpm-ostree /usr/bin/dnf
@@ -16,7 +16,7 @@ RUN /tmp/build-prep.sh
 
 RUN /tmp/build-ublue-os-akmods-addons.sh
 
-RUN /tmp/build-kmod-v4l2loopback.sh
+# RUN /tmp/build-kmod-v4l2loopback.sh
 RUN /tmp/build-kmod-xone.sh
 RUN /tmp/build-kmod-xpadneo.sh
 
