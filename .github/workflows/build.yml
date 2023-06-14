@@ -2,7 +2,7 @@ name: build-ublue
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 5 * * *'  # 5am everyday (same time as 'config')
+    - cron: '30 5 * * *'  # 5:30am everyday (just after 'config')
   pull_request:
     paths-ignore:
       - "**.md"
