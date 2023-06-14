@@ -1,10 +1,24 @@
 name: build-ublue
 on:
-  pull_request:
-  merge_group:
-  schedule:
-    - cron: '0 6 * * *'  # 6am everyday (1h after 'config')
   workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * *'  # 5am everyday (same time as 'config')
+  pull_request:
+    paths-ignore:
+      - "**.md"
+      - "**.txt"
+      - "**.gitignore"
+      - "**.gitkeep"
+      - ".github/ISSUE_TEMPLATE/**.yml"
+  merge_group:
+  push:
+    paths-ignore:
+      - "**.md"
+      - "**.txt"
+      - "**.gitignore"
+      - "**.gitkeep"
+      - ".github/ISSUE_TEMPLATE/**.yml"
+  
 env:
     IMAGE_NAME: akmods
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
@@ -21,7 +35,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        major_version: [37, 38]
+      # major_version: [37, 38]
+        major_version: [38]
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
@@ -126,7 +141,7 @@ jobs:
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v2
         id: push
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ github.token }}
@@ -141,7 +156,7 @@ jobs:
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -149,10 +164,10 @@ jobs:
 
       # Sign container
       - uses: sigstore/cosign-installer@v3.0.5
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
 
       - name: Sign container image
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
         env:
@@ -161,6 +176,6 @@ jobs:
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
       - name: Echo outputs
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           echo "${{ toJSON(steps.push.outputs) }}"

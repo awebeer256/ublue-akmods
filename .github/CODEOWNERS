@@ -1,7 +1,6 @@
 /.github/ISSUE_TEMPLATE/config.yml              @castrojo
 /.github/ISSUE_TEMPLATE/feature_request.yml     @castrojo
 /.github/dependabot.yml                         @castrojo
-/.github/workflows/build.yml                    @castrojo
 /.github/workflows/release-please.yml           @castrojo
 /.gitignore                                     @castrojo
 /CODE_OF_CONDUCT.md                             @castrojo
@@ -18,5 +17,7 @@
 /certs/public_key.der.test                      @castrojo
 /cosign.pub                                     @castrojo
 /ublue-os-akmods-addons.spec                    @castrojo
+
+/.github/workflows/build.yml                    @castrojo @awebeer256
 
 /LICENSE                                        @awebeer256
