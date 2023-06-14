@@ -1,7 +1,6 @@
 /.github/ISSUE_TEMPLATE/config.yml              @castrojo
 /.github/ISSUE_TEMPLATE/feature_request.yml     @castrojo
 /.github/dependabot.yml                         @castrojo
-/.github/workflows/release-please.yml           @castrojo
 /CODE_OF_CONDUCT.md                             @castrojo
 /README.md                                      @castrojo
 /build-kmod-v4l2loopback.sh                     @castrojo @awebeer256
@@ -15,6 +14,7 @@
 /ublue-os-akmods-addons.spec                    @castrojo
 
 /.github/workflows/build.yml                    @castrojo @awebeer256
+/.github/workflows/release-please.yml           @castrojo @awebeer256
 /.gitignore                                     @castrojo @awebeer256
 /Containerfile                                  @castrojo @awebeer256
 
