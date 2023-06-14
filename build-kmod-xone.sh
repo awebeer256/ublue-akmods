@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -oeux pipefail
 
@@ -12,9 +12,9 @@ RELEASE="$(rpm -E '%fedora')"
 
 ### BUILD xone (succeed or fail-fast with debug output)
 rpm-ostree install \
-    akmod-xone-*.fc${RELEASE}.${ARCH}
+    akmod-xone-*.fc"$RELEASE"."$ARCH"
 akmods --force --kernels "${KERNEL}" --kmod xone
-modinfo /usr/lib/modules/${KERNEL}/extra/xone/xone-{dongle,gip-chatpad,gip-gamepad,gip-guitar,gip-headset,gip,wired}.ko.xz > /dev/null \
+modinfo /usr/lib/modules/"$KERNEL"/extra/xone/xone-{dongle,gip-chatpad,gip-gamepad,gip-guitar,gip-headset,gip,wired}.ko.xz > /dev/null \
 || (find /var/cache/akmods/xone/ -name \*.log -print -exec cat {} \; && exit 1)
 
 rm -f /etc/yum.repos.d/fedora-steam.repo

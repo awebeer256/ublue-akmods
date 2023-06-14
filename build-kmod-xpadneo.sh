@@ -12,9 +12,9 @@ RELEASE="$(rpm -E '%fedora')"
 
 ### BUILD xpadneo (succeed or fail-fast with debug output)
 rpm-ostree install \
-    akmod-xpadneo-*.fc${RELEASE}.${ARCH}
+    akmod-xpadneo-*.fc"$RELEASE"."$ARCH"
 akmods --force --kernels "${KERNEL}" --kmod xpadneo
-modinfo /usr/lib/modules/${KERNEL}/extra/xpadneo/hid-xpadneo.ko.xz > /dev/null \
+modinfo /usr/lib/modules/"$KERNEL"/extra/xpadneo/hid-xpadneo.ko.xz > /dev/null \
 || (find /var/cache/akmods/xpadneo/ -name \*.log -print -exec cat {} \; && exit 1)
 
 rm -f /etc/yum.repos.d/fedora-steam.repo
