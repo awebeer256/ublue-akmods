@@ -2,7 +2,6 @@
 /.github/ISSUE_TEMPLATE/feature_request.yml     @castrojo
 /.github/dependabot.yml                         @castrojo
 /CODE_OF_CONDUCT.md                             @castrojo
-/README.md                                      @castrojo
 /build-kmod-v4l2loopback.sh                     @castrojo @awebeer256
 /build-kmod-xone.sh                             @castrojo @awebeer256
 /build-kmod-xpadneo.sh                          @castrojo @awebeer256
@@ -17,6 +16,7 @@
 /.github/workflows/release-please.yml           @castrojo @awebeer256
 /.gitignore                                     @castrojo @awebeer256
 /Containerfile                                  @castrojo @awebeer256
+/README.md                                      @castrojo @awebeer256
 
 /certs/public_key.der                           @awebeer256
 /LICENSE                                        @awebeer256
